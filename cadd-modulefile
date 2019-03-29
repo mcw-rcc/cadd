@@ -1,0 +1,18 @@
+#%Module -*- tcl -*-
+##
+## modulefile
+##
+proc ModulesHelp { } {
+  puts stderr "\tAdds [module-info name] to your environment.\n"
+}
+
+module-whatis "adds [module-info name] to your environment variables"
+
+set           cadd_vers             1.5
+set           img_root              /rcc/stor1/containers
+set-alias	  CADD.sh               "singularity run ${img_root}/ubuntu_cadd-${cadd_vers}_latest.simg 
+setenv        SINGULARITYENV_TMPDIR /scratch/global/\$USER/\$PBS_JOBID
+
+if ![ is-loaded 'singularity' ] {
+  module load singularity
+}
